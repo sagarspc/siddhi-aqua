@@ -1,0 +1,191 @@
+.service_section .service_container {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+  }
+  
+  .service_section .service_container .box {
+    position: relative;
+    color: #ffffff;
+    margin: 1%;
+    -ms-flex-preferred-size: 48%;
+        flex-basis: 48%;
+  }
+  
+  .service_section .service_container .box h6 {
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  
+  .service_section .service_container .box img {
+    width: 100%;
+  }
+  
+  .service_section .service_container .box .visible_heading {
+    position: absolute;
+    bottom: 15px;
+    left: 15px;
+  }
+  
+  .service_section .service_container .box .link_box {
+    display: none;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+  }
+  
+  .service_section .service_container .box .link_box a {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    width: 45px;
+    height: 45px;
+    border-radius: 100%;
+    background-color: #f8bc1a;
+  }
+  
+  .service_section .service_container .box .link_box a img {
+    width: 20px;
+  }
+  
+  .service_section .service_container .box .link_box a:hover {
+    opacity: .9;
+  }
+  
+  .service_section .service_container .box .link_box h6 {
+    margin-top: 15px;
+  }
+  
+  .service_section .service_container .box::before {
+    display: none;
+    content: "";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-color: rgba(67, 17, 125, 0.9);
+  }
+  
+  .service_section .service_container .box:hover .link_box {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+  
+  .service_section .service_container .box:hover::before {
+    display: block;
+  }
+  
+  .service_section .service_container .box:hover .visible_heading {
+    display: none;
+  }
+  .layout_padding {
+    padding: 90px 0;
+}
+.heading_container {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    text-align: center;
+    margin-bottom: 45px;
+}
+.heading_container h2 {
+    font-weight: bold;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    position: relative;
+    padding-bottom: 10px;
+    margin: 0;
+}
+.heading_container h2::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 60px;
+    height: 7px;
+    border-radius: 10px;
+    background-color: #f8bc1a;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+}
+.service_section .service_container .box {
+    position: relative;
+    color: #ffffff;
+    margin: 1%;
+    -ms-flex-preferred-size: 48%;
+    flex-basis: 48%;
+}
+.service_section .service_container .box img {
+    width: 100%;
+}
+.service_section .service_container .box .visible_heading {
+    position: absolute;
+    bottom: 15px;
+    left: 15px;
+}
+.service_section .service_container .box h6 {
+    font-weight: bold;
+    text-transform: uppercase;
+}
+.service_section .service_container .box .link_box {
+    display: none;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+.service_section .service_container .box .link_box a {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    width: 45px;
+    height: 45px;
+    border-radius: 100%;
+    background-color: #f8bc1a;
+}
+.service_section .service_container .box .link_box a img {
+    width: 20px;
+}
+  

@@ -1,0 +1,23 @@
+<div class="container pb-3">
+        <div class="table-wrapper">
+        <div class="table-title">
+            <div class="row">
+            <div class="col-sm-6">
+                <h2 class="text-white">Add <b>Category</b></h2>
+            </div>
+            <div class="col-sm-6">
+                <a routerLink="/categories" class="btn btn-success" ><i class="fa fa-arrow-left"></i> <span>Back To Categories</span></a>
+                </div>
+            </div>
+        </div>
+        </div>
+        <app-message></app-message>
+        <div class="row">
+            <div class="form-group col-sm-4">
+                <label>Category Name</label>
+                <input type="text" name="newCategory" class="form-control" [(ngModel)]="newCategory">
+            </div>
+        </div>
+        <button type="button" class="btn btn-success" (click)="addCategory()" [disabled]="btnDisabled">Add Category</button>
+              
+    </div>

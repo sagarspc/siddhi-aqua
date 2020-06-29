@@ -1,0 +1,48 @@
+.border-left-primary {
+    border-left: .25rem solid #4e73df!important;
+}
+.card-body {
+    -webkit-box-flex: 1;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    padding: 1.25rem;
+}
+.no-gutters {
+    margin-right: 0;
+    margin-left: 0;
+}
+.text-xs {
+    font-size: .7rem;
+}
+.text-primary {
+    color: #4e73df!important;
+}
+.text-gray-300 {
+    color: #dddfeb!important;
+}
+.text-gray-800 {
+    color: #5a5c69!important;
+}
+
+.font-weight-bold {
+    font-weight: 700!important;
+}
+.border-left-success {
+    border-left: .25rem solid #1cc88a!important;
+}
+
+.text-success {
+    color: #1cc88a!important;
+}
+.border-left-info {
+    border-left: .25rem solid #36b9cc!important;
+}
+.text-info {
+    color: #36b9cc!important;
+}
+.border-left-warning {
+    border-left: .25rem solid #f6c23e!important;
+}
+.text-warning {
+    color: #f6c23e!important;
+}

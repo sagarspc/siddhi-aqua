@@ -1,0 +1,154 @@
+<div class="container pb-3">
+        <div class="table-wrapper">
+            <div class="table-title">
+                <div class="row">
+                <div class="col-sm-6">
+                    <h2 class="text-white">Change Order <b>Status</b></h2>
+                </div>
+                <div class="col-sm-6">
+                    <a routerLink="/admin/orders" class="btn btn-success" ><i class="fa fa-arrow-left"></i> <span>Back To Orders</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row pt-3">
+            <div class="col-md-3 form-group">
+                <label class="control-label">Change Order Status</label>
+            </div>
+            <div class="col-md-3 form-group">
+                <select [(ngModel)]="selectedOption" class="custom-select">
+                <option *ngFor="let o of options">
+                    {{ o.name }}
+                </option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <button class="btn btn-success" (click)="ChnageStausByAdmin()">Submit</button>
+            </div>
+            <div class="col-md-3">
+                <label>Current Status :</label>
+                <span class="btn btn-success pull-right" *ngIf="orderStatus == 'Created'">{{orderStatus}}</span>
+                <span class="btn btn-primary pull-right" *ngIf="orderStatus == 'Shipped'">{{orderStatus}}</span>
+                <span class="btn btn-info pull-right" *ngIf="orderStatus == 'En Route'">{{orderStatus}}</span>
+                <span class="btn btn-success pull-right" *ngIf="orderStatus == 'Arrived'">{{orderStatus}}</span>
+            </div>
+        </div>
+
+        <div class="row w-100">
+            <div class="media flex-sm-row flex-column-reverse justify-content-between ">
+                <div class="col my-auto" *ngIf="user.roles[0] == 'ROLE_ADMIN'">
+                    
+                </div>
+                <!-- <div class="col-auto text-center my-auto pl-0 pt-sm-4"> <img class="img-fluid my-auto align-items-center mb-0 pt-3" src="https://i.imgur.com/7q7gIzR.png" width="115" height="115">
+                    <p class="mb-4 pt-0 Glasses">Glasses For Everyone</p>
+                </div> -->
+            </div>
+            <div class="card-body">
+                <div class="row justify-content-between mb-3">
+                    <div class="col-auto">
+                        <h6 class="color-1 mb-0 change-color">Your products</h6>
+                    </div>
+                    <div class="col-auto "> <small>Order ID : {{orderId}}</small> </div>
+                    <div class="col-auto "> <small>Created On : {{orderDate | date }}</small> </div>
+                </div>
+                <hr>
+                <div class="row mb-4" *ngFor="let product of products">
+                    <div class="col">
+                        <div class="">
+                            <div class="card-body">
+                                <div class="media">
+                                    <div class="sq align-self-center "> <img class="img-fluid my-auto align-self-center mr-2 mr-md-4 pl-0 p-0 m-0" src="{{product.product.imageUrl}}" width="135" height="135" /> </div>
+                                    <div class="media-body my-auto text-right">
+                                        <div class="row my-auto flex-column flex-md-row">
+                                            <div class="col my-auto"> <small>Product Name: {{product.product.title}} </small></div>
+                                            <div class="col my-auto"> <small>Qantity : {{product.quantity}}</small></div>
+                                            <div class="col my-auto">
+                                                <h6 class="mb-0"><i class="fa fa-inr"></i>{{product.product.price}}</h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr class="my-3 ">
+                               
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row pt-4" *ngIf="user.roles[0] == 'ROLE_USER'">
+                      <div class="col-md-3 mb-3 "> <a class="change-color" (click)="trackOrder()" href="javascript:void(0)"><small> Track Order <span><i class=" ml-2 fa fa-refresh" aria-hidden="true"></i></span></small> </a></div>
+                      <div class="col mt-auto">
+                          <div class="progress my-auto">
+                            <div class="progress-bar progress-bar rounded" *ngIf="orderStatus == 'Created'" style="width: 25%" role="progressbar" 
+                                aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                            </div>
+                            <div class="progress-bar progress-bar rounded" *ngIf="orderStatus == 'Shipped'" style="width: 50%" role="progressbar" 
+                                aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
+                            </div>
+                            <div class="progress-bar progress-bar rounded" *ngIf="orderStatus == 'En Route'" style="width: 75%" role="progressbar" 
+                                aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
+                            </div>
+                            <div class="progress-bar progress-bar rounded" *ngIf="orderStatus == 'Arrived'" style="width: 100%" role="progressbar" 
+                                aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+                            </div>
+                          </div>
+                          <div class="media row justify-content-between mt-2">
+                              <div class="col-auto text-right"><span> <small class="text-right mr-sm-2"><span class="mr-2"><img src="../assets/img/order-pro.png" height="30" width="30"/></span>Order Processed</small> <i class="fa fa-circle active"></i> </span></div>
+                              <div class="flex-col"> <span> <small class="text-right mr-sm-2"><span class="mr-2"><img src="../assets/img/shipped.png" height="30" width="30"/></span>Order shipped</small><i class="fa fa-circle" [ngClass]="{'active': orderStatus == 'Shipped'}"></i></span></div>
+                              <div class="col-auto flex-col-auto"><small class="text-right mr-sm-2"><span class="mr-2"><img src="../assets/img/enroute.png" height="30" width="30"/></span>Order En Route</small><span> <i class="fa fa-circle" [ngClass]="{'active': orderStatus == 'En Route'}"></i></span></div>
+                              <div class="col-auto flex-col-auto"><small class="text-right mr-sm-2"><span class="mr-2"><img src="../assets/img/arrived.png" height="30" width="30"/></span>Order Arrived</small><span> <i class="fa fa-circle" [ngClass]="{'active': orderStatus == 'Arrived'}"></i></span></div>
+                          </div>
+                          <div class="mt-3 d-flex flex-column-reverse pull-right">
+                                <table class="table table-clear mt-3">
+                                  <tbody>
+                                  <tr>
+                                  <td class="left">
+                                  Sub Total
+                                  </td>
+                                  <td class="right"><i class="fa fa-inr"></i>{{order?.totalPrice - 70}}</td>
+                                  </tr>
+                                  <tr>
+                                  <td class="left">
+                                  Shipping Charge
+                                  </td>
+                                  <td class="right"><i class="fa fa-inr"></i>50</td>
+                                  </tr>
+                                  <tr>
+                                  <td class="left">
+                                  Service Tax
+                                  </td>
+                                  <td class="right"><i class="fa fa-inr"></i>20</td>
+                                  </tr>
+                                  <tr>
+                                  <td class="left">
+                                  Total
+                                  </td>
+                                  <td class="right">
+                                  <i class="fa fa-inr"></i>{{order?.totalPrice}}
+                                  </td>
+                                  </tr>
+                                  </tbody>
+                                  </table>
+                          </div>
+                      </div>
+                  </div>
+                <div class="row mt-4">
+                    <div class="col">
+                        <div class="row justify-content-between">
+                            <!-- <div class="col-auto">
+                                <p class="mb-1 text-dark"><b>Order Details</b></p>
+                            </div>
+                            <div class="flex-sm-col text-right col">
+                                <p class="mb-1"><b>Total</b></p>
+                            </div>
+                            <div class="flex-sm-col col-auto">
+                                <p class="mb-1"><i class="fa fa-inr"></i>{{ orderTotal}}</p>
+                            </div> -->
+                        </div>
+                        <h4 class="mt-2" *ngIf="user.roles[0] == 'ROLE_USER'">
+                          <button  class="btn btn-danger pull-right" [disabled]="orderStatus == 'Cancelled' || orderStatus == 'Shipped' || orderStatus == 'En Route' || orderStatus == 'Arrived'" (click)="CancelledOrder()"> Cancel Order</button>
+                       </h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>

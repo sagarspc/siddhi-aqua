@@ -1,0 +1,122 @@
+
+<!-- <div class="container">
+    <app-message></app-message>
+    <div *ngIf="!myorders?.length > 0" class="m-auto">
+      <h1 class="text-center display-3 mt-5">
+        <i class="fa fa-spinner fa-spin"></i>
+      </h1>
+    </div>
+    <h3 *ngIf="!myorders?.length > 0" class="display-2 text-center mt-5">Order History is Empty</h3>
+    <div class="row"  *ngIf="myorders?.length > 0">
+      <div class="col-12">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th scope="col">Order Id</th>
+              <th scope="col">Date</th>
+              <th scope="col">Status</th>
+              <th scope="col">Receipt</th>
+              <th scope="col">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let order of myorders">
+              <th scope="row">{{order._id}}</th>
+              <td>{{order.crated | date}}</td>
+              <td>{{order.status}}</td>
+              <td>
+                <a routerLink="/order-receipt/{{ order._id }}" class="btn btn-primary mr-2"><i class="fa fa-eye"></i></a>
+              </td>
+              <td>
+                <a routerLink="/order/{{ order._id }}" class="btn btn-primary mr-2"><i class="fa fa-eye"></i></a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div> -->
+<!--================Home Banner Area =================-->
+<section class="banner_area">
+    <div class="banner_inner d-flex align-items-center">
+      <div class="container">
+        <div
+          class="banner_content d-md-flex justify-content-between align-items-center"
+        >
+          <div class="mb-3 mb-md-0">
+            <h2>My Orders</h2>
+          </div>
+          <div class="page_link">
+            <a routerLink="/home">Home</a>
+            <a routerLink="/profile">Profile</a>
+            <a href="javascript:void(0)">My orders</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--================End Home Banner Area =================-->
+
+  <!-- ================ order section start ================= -->
+<section class="" >
+    <div class="container">
+        <h3 *ngIf="!myorders?.length > 0" class="display-2 text-center mt-5">Order History is Empty</h3>
+        <div class="table-wrapper" *ngIf="myorders?.length > 0">
+            <div class="table-title">
+                <div class="row">
+                    <div class="col-sm-4">
+                    <h2 class="text-white">Order <b>Details</b></h2>
+                </div>
+                <div class="col-sm-8">						
+                  <a href="#" class="btn btn-primary"><i class="fa fa-refresh"></i> <span>Refresh List</span></a>
+                  <a href="#" class="btn btn-info"><i class="fa fa-file-excel-o"></i> <span>Export to Excel</span></a>
+                </div>
+                </div>
+            </div>
+           
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Your Order ID</th>
+                        <th>Order Date</th>						
+                        <th>Status</th>						
+                        <th>Net Amount</th>
+                        <th>Receipt</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let order of myorders| slice: (page-1) * pageSize : (page-1) * pageSize + pageSize;let i=index">
+                        <td>{{ pageSize * (page-1) + i+1}}</td>
+                        <th scope="row">{{order._id}}</th>
+                        <td>{{order.crated | date}}</td>                        
+                        <td><span class="status"
+                           [ngClass]="
+                           {'text-info': order.status =='Created','text-danger': order.status =='Cancelled',
+                           'text-warning': order.status =='Shipped','text-success': order.status =='Arrived'
+                          }">
+                          &bull;</span> {{order.status}}</td>
+                        <td><i class="fa fa-inr"></i>{{order.totalPrice}}</td>
+						            <!-- <td><a href="#" class="view" title="View Details" data-toggle="tooltip">
+                          <i class="fa fa-arrow-right"></i></a>
+                        </td> -->
+                        <td>
+                            <a routerLink="/order-receipt/{{ order._id }}" class="view"> <i class="fa fa-arrow-right"></i></a>
+                          </td>
+                          <td>
+                          <a routerLink="/order/{{ order._id }}" class="view"> <i class="fa fa-arrow-right"></i></a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+		        	<div class="clearfix">
+                <ngb-pagination
+                  [(page)]="page"
+                  [pageSize]="pageSize"
+                  [collectionSize]="myorders?.length"></ngb-pagination>
+            </div>
+        </div>
+    </div>     
+</section>
+<!-- ================ order section end ================= -->

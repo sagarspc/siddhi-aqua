@@ -1,0 +1,81 @@
+<!-- 
+<app-message></app-message>
+<div class="card bg-light mt-5">
+        <div class="card-body">
+          <h4 class="card-title">Add User</h4>
+          <hr>
+              <div class="form-group">
+                <label class="form-control-label">Name</label>
+                <input type="text" name="name" class="form-control" [(ngModel)]="user.username">
+              </div>
+              <div  class="form-group">
+                  <label class="form-control-label">User Role</label>
+                  <select class="form-control" [(ngModel)]="roleID">
+                      <option value="" disabled>Choose your role</option>
+                      <option *ngFor="let role of roles" [ngValue]="role._id">{{role.name}}</option>
+                   </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-control-label">Email</label>
+                <input type="text" name="email" class="form-control" [(ngModel)]="user.email">
+              </div>
+              <div class="form-group">
+                <label class="form-control-label">Password</label>
+                <input type="text" name="password" class="form-control" [(ngModel)]="user.password">
+              </div>
+              <div class="form-group">
+                <label class="form-control-label">Confirm Password</label>
+                <input type="text" name="password1" class="form-control" [(ngModel)]="password1">
+              </div>
+              
+              <hr>
+              <button type="button" class="btn btn-primary btn-block" (click)="addUser()" [disabled]="btnDisabled">Register</button>
+            
+        </div>
+      </div> -->
+
+      <div class="container pb-3">
+          <div class="table-wrapper">
+            <div class="table-title">
+              <div class="row">
+                <div class="col-sm-6">
+                  <h2 class="text-white">Add <b>User</b></h2>
+                </div>
+                <div class="col-sm-6">
+                  <a routerLink="/user" class="btn btn-success" ><i class="fa fa-arrow-left"></i> <span>Back To Users</span></a>
+                  </div>
+              </div>
+            </div>
+          </div>
+          <app-message></app-message>
+          <div class="row">
+              <div class="form-group col-sm-4">
+                  <label class="form-control-label">Name</label>
+                  <input type="text" name="username" class="form-control" [(ngModel)]="username">
+                </div>
+                <div  class="form-group col-sm-4">
+                    <label class="form-control-label">User Role</label>
+                    <select class="form-control" [(ngModel)]="roleID">
+                        <option value="" disabled>Choose your role</option>
+                        <option *ngFor="let role of roles" [ngValue]="role._id">{{role.name}}</option>
+                     </select>
+                </div>
+  
+                <div class="form-group col-sm-4">
+                  <label class="form-control-label">Email</label>
+                  <input type="text" name="email" class="form-control" [(ngModel)]="email">
+                </div>
+                <div class="form-group col-sm-4">
+                  <label class="form-control-label">Password</label>
+                  <input type="password" name="password" class="form-control" [(ngModel)]="password">
+                </div>
+                <div class="form-group col-sm-4">
+                  <label class="form-control-label">Confirm Password</label>
+                  <input type="password" name="password1" class="form-control" [(ngModel)]="password1">
+                </div>
+              </div>
+              <button type="button" class="btn btn-success mt-3" (click)="addUser()" [disabled]="btnDisabled">Add User</button>
+              
+              
+              </div>

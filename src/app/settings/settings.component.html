@@ -1,0 +1,54 @@
+
+ <!--================Home Banner Area =================-->
+ <section class="banner_area" *ngIf="user.roles[0] == 'ROLE_USER'">
+    <div class="banner_inner d-flex align-items-center">
+      <div class="container">
+        <div class="banner_content d-md-flex justify-content-between align-items-center">
+          <div class="mb-3 mb-md-0">
+            <h2>Change Profile</h2>
+          </div>
+          <div class="page_link">
+            <a routerLink="/home">Home</a>
+            <a routerLink="/profile">Profile</a>
+            <a href="javascript:void(0)">Change Profile</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--================End Home Banner Area =================-->
+
+
+<section id="settings">
+    <div class="container p-5">
+      <app-message></app-message>
+      <div *ngIf="!currentSettings" class="m-auto">
+        <h1 class="text-center display-3 mt-5">
+          <i class="fa fa-spinner fa-spin"></i>
+        </h1>
+      </div>
+      <div class="shadow card bg-white">
+        <div class="card-body">
+          <form>
+            <div class="form-group">
+              <label class="form-control-label">Name</label>
+              <input type="text" name="username" class="form-control" [(ngModel)]="currentSettings.username">
+            </div>
+            <div class="form-group">
+              <label class="form-control-label">Email</label>
+              <input type="text" name="email" class="form-control" [(ngModel)]="currentSettings.email">
+            </div>
+            <div class="form-group">
+              <label class="form-control-label">New Password</label>
+              <input type="password" name="newPwd" class="form-control" [(ngModel)]="currentSettings.newPwd">
+            </div>
+            <div class="form-group">
+              <label class="form-control-label">Confirm Password</label>
+              <input type="password" name="confirmPwd" class="form-control" [(ngModel)]="currentSettings.confirmPwd">
+            </div>
+            <button type="button" class="btn btn-success" (click)="update()" [disabled]="btnDisabled">Update</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>

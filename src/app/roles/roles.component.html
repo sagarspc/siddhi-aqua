@@ -1,0 +1,82 @@
+<div class="container pb-3">
+        <div class="table-wrapper">
+            <div class="table-title">
+                <div class="row">
+                  <div class="col-sm-6">
+                    <h2 class="text-white">Manage <b>Roles</b></h2>
+                  </div>
+                  <div class="col-sm-6">
+                    <a routerLink="/roles/add-roles" class="btn btn-success" ><i class="fa fa-plus"></i> <span>Add New Role</span></a>
+                    <a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal" ><i class="fa fa-trash"></i> <span>Delete</span></a>
+                  </div>
+                </div>
+              </div>
+          <div *ngIf="!roles?.length > 0" class="m-auto">
+            <h1 class="text-center display-3 mt-5">
+              <i class="fa fa-spinner fa-spin"></i>
+            </h1>
+          </div>
+          <h3 *ngIf="!roles?.length > 0" class="display-2 text-center mt-5">Roles History is Empty</h3>
+        
+        </div>
+        <app-message></app-message>
+        <div *ngIf="!roles" class="m-auto">
+          <h1 class="text-center display-3 mt-5">
+            <i class="fa fa-spinner fa-spin"></i>
+          </h1>
+        </div>
+            <table class="table table-striped table-hover text-nowrap">
+                <thead>
+                  <tr>
+                    <th scope="col">Sr.No.</th>
+                    <th scope="col">Role Name</th>
+                    <th scope="col">Created On</th>
+                    <th scope="col">Updated On</th>
+                    <th scope="col">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let role of roles | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize;let i=index">
+                    <td>{{i+1}}</td>
+                    <td>{{role.name}}</td>
+                    <td>{{role.created | date}}</td>
+                    <td>{{role.created | date}}</td>
+                    <td>
+                        <a routerLink="/role-details/{{ role._id }}" class="edit" ><i class="fa fa-pencil" data-toggle="tooltip" title="Edit"></i></a>
+                        <a href="#deleteEmployeeModal" (click)="getRoleByID(role._id)"class="delete" data-toggle="modal"><i class="fa fa-trash" data-toggle="tooltip" title="Delete"></i></a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <div class="clearfix">
+                <div class="pull-right">
+                <ngb-pagination
+                  [(page)]="page"
+                  [pageSize]="pageSize"
+                  [collectionSize]="roles?.length"></ngb-pagination>
+                </div>
+              </div>
+    </div>
+
+
+     <!-- Delete Modal HTML -->
+<div id="deleteEmployeeModal" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form>
+        <div class="modal-header">
+          <h4 class="modal-title">Delete Role</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        </div>
+        <div class="modal-body">
+          <p>Are you sure you want to delete these Role?</p>
+          <p class="text-warning"><small>This action cannot be undone.</small></p>
+        </div>
+        <div class="modal-footer">
+          <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+          <input type="submit" class="btn btn-danger" (click)="deleteRole()" value="Delete">
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

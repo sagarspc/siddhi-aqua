@@ -1,0 +1,104 @@
+.slider_section {
+  height: calc(100% - 80px);
+  background-image: url(../assets/img/banner-4.jpg);
+  background-size: cover;
+  min-height: 300px;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+}
+
+.slider_section .slider_container {
+  height: calc(100% - 60px);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.slider_section #carouselExampleIndicators {
+  width: 100%;
+}
+.slider_section .carousel-indicators {
+  bottom: 50%;
+  margin: 0;
+  -webkit-transform: translateY(50%);
+  transform: translateY(50%);
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  left: 25px;
+}
+.slider_section .detail-box h2 {
+  color: #fff;
+}
+.slider_section .detail-box h1 {
+  font-size: 4rem;
+  font-weight: bold;
+  color: #f4f3f3;
+  text-transform: uppercase;
+}
+.slider_section .detail-box p {
+  color: #ffffff;
+}
+
+.slider_section .detail-box .btn-box a {
+  width: 165px;
+  text-align: center;
+  margin: 5px;
+}
+.slider_section .detail-box .btn-box .btn-1 {
+  display: inline-block;
+  padding: 7px 0;
+  background-color: #f8bc1a;
+  border: 1px solid #f8bc1a;
+  color: #ffffff;
+}
+.slider_section .detail-box .btn-box .btn-2 {
+  display: inline-block;
+  padding: 7px 0;
+  background-color: #f4f3f3;
+  border: 1px solid #f4f3f3;
+  color: #020000;
+}
+.slider_section .carousel-indicators li.active {
+  width: 18px;
+  height: 18px;
+  border: 3px solid #f8bc1a;
+}
+
+.slider_section .carousel-indicators li {
+  width: 14px;
+  height: 14px;
+  opacity: 1;
+  background-color: transparent;
+  border: 2px solid #f8bc1a;
+  border-radius: 100%;
+}
+.hidden-slider{
+  display: none !important;
+}
+.removeBckg{
+  background-image:none !important;
+  min-height: 0px !important;
+  margin-bottom: 0px;
+}
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%
+}
+.sticky + body {
+  padding-top: 102px;
+}
+.active {
+  color: #71cd14 !important;
+}
+.custom-navbar{
+  background-color: #fff !important 
+}

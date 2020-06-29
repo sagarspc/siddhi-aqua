@@ -1,0 +1,482 @@
+<!--================Header Menu Area =================-->
+<header class="header_area" id="myHeader" *ngIf="!showAdminBoard">
+  <div class="top_menu">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-7">
+          <div class="float-left">
+            <p>Phone: +91 7588972088</p>
+            <p>email: SiddhiAquarium@.gmail.com</p>
+          </div>
+        </div>
+        <div class="col-lg-5">
+          <div class="float-right">
+            <ul class="right_side">
+
+              <li>
+                <a routerLink="/profile/orders">
+                  track order
+                </a>
+              </li>
+              <li>
+                <a routerLink="/contacts">
+                  Contact Us
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="main_menu shadow">
+    <div class="container">
+      <nav class="navbar navbar-expand-lg navbar-light w-100 ">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <a class="navbar-brand logo_h" routerLink="/home">
+          <img src="../assets/img/logo-5.jpg" alt="" style="height: 63px;width: 65px;border-radius: 100%;" />
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse offset w-100" id="navbarSupportedContent">
+          <div class="row w-100 mr-0">
+            <div class="col-lg-7 pr-0">
+              <ul class="nav navbar-nav center_nav pull-right" *ngIf="!isLoggedIn">
+                <li class="nav-item">
+                  <a class="nav-link" routerLink="/home" routerLinkActive="active">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" routerLink="/about" routerLinkActive="active">About </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" routerLink="/services" routerLinkActive="active">Services </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" routerLink="/cart" routerLinkActive="active">Cart </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" routerLink="/contacts" routerLinkActive="active">Contact</a>
+                </li>
+              </ul>
+              <ul class="nav navbar-nav center_nav pull-right"
+                *ngIf="isLoggedIn && !showAdminBoard && !showModeratorBoard">
+                <li class="nav-item">
+                  <a class="nav-link" routerLink="/home" routerLinkActive="active">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" routerLink="/about" routerLinkActive="active">About </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" routerLinkActive="active" routerLink="/services">Services </a>
+                </li>
+                <li class="nav-item mr-5">
+                  <a class="nav-link" routerLink="/cart" routerLinkActive="active">Cart</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" routerLink="/contacts" routerLinkActive="active">Contact Us</a>
+                </li>
+              </ul>
+            </div>
+
+            <div class="col-lg-5 pr-0">
+              <ul class="nav navbar-nav navbar-right right_nav pull-right">
+                <!-- <li class="nav-item">
+                    <a href="#" class="icons">
+                      <i class="ti-search" aria-hidden="true"></i>
+                    </a>
+                  </li> -->
+
+                <li class="nav-item">
+                  <a routerLink="/cart" class="icons">
+                    <i class="ti-shopping-cart"></i>
+                    <span *ngIf="cartItems.length > 0">{{cartItems.length}}</span>
+                  </a>
+                </li>
+
+                <li class="nav-item submenu dropdown">
+                  <a href="#" class="nav-link icons" data-toggle="dropdown" role="button" aria-haspopup="true"
+                    aria-expanded="false">
+                    <i class="ti-user mr-3" aria-hidden="true"></i>
+                    <span *ngIf="!isLoggedIn">Accounts</span>
+                    <span *ngIf="isLoggedIn">{{ User.username }} </span>
+                  </a>
+                  <ul class="dropdown-menu">
+                    <li class="nav-item" *ngIf="isLoggedIn">
+                      <a class="nav-link" routerLink="/profile">Profile</a>
+                    </li>
+                    <!-- <li class="nav-item" *ngIf="!isLoggedIn">
+                            <a class="nav-link ghost" href="javascript:void(0)" id="signIn" data-toggle="modal" data-target="#registerModal">Login</a>
+                        </li> -->
+                    <!-- <li class="nav-item" *ngIf="!isLoggedIn">
+                        <a  data-toggle="modal" data-target="#exampleModal" class="nav link">
+                            Login
+                          </a>
+                        </li> -->
+                    <li class="nav-item" *ngIf="isLoggedIn">
+                      <a href="javascript:void(0)" (click)="logout()" class="nav-link">Logout
+                      </a>
+                    </li>
+                    <li class="nav-item" *ngIf="!isLoggedIn">
+                      <a href="javascript:void(0)" data-toggle="modal" data-target="#exampleModal" class="nav-link">
+                        Login
+                      </a>
+                    </li>
+                    <li class="nav-item" *ngIf="!isLoggedIn">
+                      <a href="javascript:void(0)" data-toggle="modal" data-target="#registerModal" class="nav-link">
+                        Register
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+
+                <!-- <li class="nav-item">
+                    <a href="#" class="icons">
+                      <i class="ti-heart" aria-hidden="true"></i>
+                    </a>
+                  </li> -->
+              </ul>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </div>
+</header>
+<!--================Header Menu Area =================-->
+
+<!--================Home Banner Area =================-->
+<div class="section-user" *ngIf="!showAdminBoard">
+  <section class="slider_section mb-40" *ngIf="router.url == '/home'">
+    <div class="slider_container" *ngIf="router.url == '/home'">
+      <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+          <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+          <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+          <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <div class="container">
+              <div class="row">
+                <div class="col-lg-6 col-md-7 offset-md-6 offset-md-5">
+                  <div class="detail-box mt-5">
+                    <h2>
+                      Get Your Fish
+                    </h2>
+                    <h1>
+                      Explore Here
+                    </h1>
+                    <!-- <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                        labore et dolore magna aliqua. Ut enim ad minim veniam
+                      </p> -->
+                    <div class="btn-box">
+                      <a routerLink="/shop-category" class="btn-1">
+                        Buy Here
+                      </a>
+                      <a routerLink="/contacts" class="btn-2">
+                        Contact Us
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item ">
+            <div class="container">
+              <div class="row">
+                <div class="col-lg-6 col-md-7 offset-md-6 offset-md-5">
+                  <div class="detail-box mt-5">
+                    <h2>
+                      Get Your Fish
+                    </h2>
+                    <h1>
+                      Explore Here
+                    </h1>
+                    <!-- <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                            labore et dolore magna aliqua. Ut enim ad minim veniam
+                          </p> -->
+                    <div class="btn-box">
+                      <a href="" class="btn-1">
+                        Buy Here
+                      </a>
+                      <a href="" class="btn-2">
+                        Get A Quote
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item ">
+            <div class="container">
+              <div class="row">
+                <div class="col-lg-6 col-md-7 offset-md-6 offset-md-5">
+                  <div class="detail-box mt-5">
+                    <h2>
+                      Get Your Fish
+                    </h2>
+                    <h1>
+                      Explore Here
+                    </h1>
+                    <!-- <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                            labore et dolore magna aliqua. Ut enim ad minim veniam
+                          </p> -->
+                    <div class="btn-box">
+                      <a href="" class="btn-1">
+                        Buy Here
+                      </a>
+                      <a href="" class="btn-2">
+                        Get A Quote
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end slider section -->
+  </section>
+  <!--================End Home Banner Area =================-->
+
+
+  <main>
+    <router-outlet></router-outlet>
+  </main>
+</div>
+<div class="section-user" *ngIf="showAdminBoard">
+  <div class="d-flex" id="wrapper">
+
+    <!-- Sidebar -->
+    <div class="bg-light border-right" id="sidebar-wrapper">
+      <div class="sidebar-heading">
+        <a class="navbar-brand logo_h" routerLink="/home">
+          <img src="../assets/img/logo-5.jpg" alt="" style="height: 50px;width: 50px;border-radius: 100%;" />
+          <span class="small ml-3">Siddhi Aquarium</span>
+        </a>
+      </div>
+      <div class="list-group list-group-flush">
+        <a routerLink="/dashboard" routerLinkActive="active"
+          class="list-group-item list-group-item-action bg-light">Dashboard</a>
+        <a routerLink="/profile/myproducts" routerLinkActive="active"
+          class="list-group-item list-group-item-action bg-light">Products</a>
+        <a routerLink="/admin/orders" routerLinkActive="active"
+          class="list-group-item list-group-item-action bg-light">Orders</a>
+        <a routerLink="/user" routerLinkActive="active"
+          class="list-group-item list-group-item-action bg-light">Users</a>
+        <a routerLink="/roles" routerLinkActive="active"
+          class="list-group-item list-group-item-action bg-light">Roles</a>
+        <a routerLink="/brands" routerLinkActive="active"
+          class="list-group-item list-group-item-action bg-light">Brands</a>
+        <a routerLink="/categories" routerLinkActive="active"
+          class="list-group-item list-group-item-action bg-light">Category</a>
+        <a href="javascript:void(0)" class="list-group-item list-group-item-action bg-light">Notification</a>
+      </div>
+    </div>
+    <!-- /#sidebar-wrapper -->
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+
+      <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom custom-navbar shadow">
+        <button class="btn btn-primary" style="background-color: transparent" id="menu-toggle">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+          <span class="navbar-toggler-icon"></span>
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+            <li class="nav-item active">
+              <a class="nav-link" routerLink="/profile/myproducts">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="javascript:void(0)">Notification</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                {{User.username}}
+              </a>
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" routerLink="/profile">Profile</a>
+                <a class="dropdown-item" href="javascript:void(0)" (click)="logout()">Logout</a>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      <!-- <main>
+                  <router-outlet></router-outlet>
+              </main> -->
+      <div class="container-fluid">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+    <!-- /#page-content-wrapper -->
+
+  </div>
+  <!-- /#wrapper -->
+</div>
+
+<!--================ start footer Area  =================-->
+<footer class="footer-area section_gap">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4 col-md-6 single-footer-widget">
+        <h4>About Aquarium</h4>
+        <ul>
+          <li><a href="#">Managed Website</a></li>
+          <li><a href="#">Manage Reputation</a></li>
+          <li><a href="#">Power Tools</a></li>
+          <li><a href="#">Marketing Service</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-4 col-md-6 single-footer-widget">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a routerLink="/services">Services</a></li>
+          <li><a routerLink="/cart">cart</a></li>
+          <li><a routerLink="/contacts">Contact Us</a></li>
+          <li><a routerLink="/about">About Us</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-4 col-md-6 single-footer-widget">
+        <h4>Policy</h4>
+        <ul>
+          <li><a href="#">Payment</a></li>
+          <li><a href="#">Return Policy</a></li>
+          <li><a href="#">Cancellation Policy</a></li>
+          <li><a href="#">Sitemap</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom row align-items-center">
+      <p class="footer-text m-0 col-lg-8 col-md-12">
+        Copyright &copy;<script>
+          document.write(new Date().getFullYear());
+        </script> All rights reserved
+      </p>
+      <div class="col-lg-4 col-md-12 footer-social">
+        <a href="#"><i class="fa fa-facebook"></i></a>
+        <a href="#"><i class="fa fa-twitter"></i></a>
+        <a href="#"><i class="fa fa-dribbble"></i></a>
+        <a href="#"><i class="fa fa-behance"></i></a>
+      </div>
+    </div>
+  </div>
+</footer>
+<!--================ End footer Area  =================-->
+
+<!-- login and register modal start here-->
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-center m-auto" id="exampleModalLabel">Login</h5>
+        <button type="button" class="close m-0 p-0" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+          <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" class="form-control" name="username" [(ngModel)]="form.username" required
+              #username="ngModel" />
+            <div class="alert alert-danger" role="alert" *ngIf="f.submitted && username.invalid">
+              Username is required!
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" name="password" [(ngModel)]="form.password" required
+              minlength="6" #password="ngModel" />
+            <div class="alert alert-danger" role="alert" *ngIf="f.submitted && password.invalid">
+              <div *ngIf="password.errors.required">Password is required</div>
+              <div *ngIf="password.errors.minlength">
+                Password must be at least 6 characters
+              </div>
+            </div>
+            <a class="mt-2" routerLink="/request-reset-password">Forgot your password ?</a>
+          </div>
+          <div class="form-group">
+            <button class="btn btn-primary btn-block" id="closeModal">
+              Login
+            </button>
+          </div>
+          <div class="form-group">
+            <div class="alert alert-danger" role="alert" *ngIf="f.submitted && isLoginFailed">
+              Login failed: {{ errorMessage }}
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-center m-auto" id="registerModalLabel">Register</h5>
+        <button type="button" class="close m-0 p-0" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <app-message></app-message>
+        <form>
+          <div class="form-group">
+            <label class="form-control-label">Name</label>
+            <input type="text" name="name" class="form-control" [(ngModel)]="regusername">
+          </div>
+          <div class="form-group">
+            <label class="form-control-label">Email</label>
+            <input type="text" name="email" class="form-control" [(ngModel)]="email">
+          </div>
+          <div class="form-group">
+            <label class="form-control-label">Password</label>
+            <input type="password" name="password" class="form-control" [(ngModel)]="regpassword">
+          </div>
+          <div class="form-group">
+            <label class="form-control-label">Confirm Password</label>
+            <input type="password" name="password1" class="form-control" [(ngModel)]="password1">
+          </div>
+          <div class="form-check sr-only">
+            <label class="form-check-label">
+              <input type="checkbox" name="isSeller" class="form-check-input" [(ngModel)]="isSeller"> Register as Seller
+            </label>
+          </div>
+          <hr>
+          <button type="button" class="btn btn-primary btn-block" (click)="register()"
+            [disabled]="btnDisabled">Register</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- login and register modal end here-->
+<ngx-spinner bdColor="rgb(255, 255, 255)"><img src='../assets/img/loader.gif' /></ngx-spinner>

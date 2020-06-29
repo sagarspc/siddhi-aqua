@@ -1,0 +1,30 @@
+.navbar-light .navbar-toggler{
+    border-color:transparent !important;
+}
+
+.alert-danger{
+    color: #FF4B2B !important;
+    background-color: #fff !important;
+    border-color:transparent !important;
+    padding:0 !important;
+    margin:0 !important;
+    font-size: 11px !important;
+}
+.modal-content{
+    padding: 20px;
+}
+.admin-page-header{
+    padding-bottom: 15px;
+    background: #435d7d;
+    color: #fff;
+    padding: 16px 30px;
+    margin: -20px -25px 10px;
+    border-radius: 3px 3px 0 0; 
+}
+
+.banner_area .banner_inner{
+    min-height: 110px !important;
+}
+.banner_area{
+    min-height: 150px !important;
+}

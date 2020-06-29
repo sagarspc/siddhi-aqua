@@ -1,0 +1,57 @@
+<!--================Home Banner Area =================-->
+<section class="banner_area" *ngIf="user.roles[0] == 'ROLE_USER'">
+    <div class="banner_inner d-flex align-items-center">
+      <div class="container">
+        <div
+          class="banner_content d-md-flex justify-content-between align-items-center"
+        >
+          <div class="mb-3 mb-md-0">
+            <h2>Profile</h2>
+          </div>
+          <div class="page_link">
+            <a routerLink="/home">Home</a>
+            <a href="javascript:void(0)">Profile</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--================End Home Banner Area =================-->
+<section id="profile">
+  <div class="container p-5">
+    <div *ngIf="!user" class="m-auto">
+      <h1 class="text-center display-3 mt-5">
+        <i class="fa fa-spinner fa-spin"></i>
+      </h1>
+    </div>
+    <div class="row mt-5" *ngIf="user">
+      <div class="col-md-3">
+        <img src="../../assets/img/suraj.jpg" alt="userimage" style="width:100%" class="rounded-circle image">
+      </div>
+      <div class="col-md-8 ml-3">
+        <p id="username" class="lead">{{ username }}</p>
+        <a routerLink="/profile/orders" class="btn btn-info text-white" *ngIf="user.roles[0] == 'ROLE_USER'">My Orders</a>
+        <br>
+        <br>
+        <a routerLink="/profile/settings" class="btn btn-info text-white">Change Account Settings</a>
+        <br>
+        <br>
+        <a routerLink="/profile/address" class="btn btn-info text-white" *ngIf="user.roles[0] == 'ROLE_USER'">Change Shipping Address</a>
+        <br>
+        <br>
+        <div>
+          <p class="lead">Seller Actions</p>
+          <hr>
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <a routerLink="/profile/postproduct" class="btn btn-outline-success btn-block">Post Product for Sale</a>
+            </div>
+            <div class="col-md-6">
+              <a routerLink="/profile/myproducts" class="btn btn-outline-info btn-block">My Products</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

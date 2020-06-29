@@ -1,0 +1,101 @@
+<!-- <section id="postProduct">
+        <div class="container p-5">
+          <h4 class="display-4">Post a Product for Sale</h4>
+          <hr>
+          <app-message></app-message>
+          
+          <div class="card bg-light">
+            <div class="card-body">
+              <form>
+                <div class="form-group">
+                  <label class="form-control-label">Title</label>
+                  <input type="text" name="title" class="form-control" [(ngModel)]="product.title">
+                </div>
+                <div class="form-group">
+                  <label class="form-control-label">Price</label>
+                  <input type="number" name="price" class="form-control" [(ngModel)]="product.price">
+                </div>
+                <div class="form-group">
+                  <label>Category</label>
+                  <select name="categoryId" [(ngModel)]="product.categoryId" class="custom-select">
+                    <option *ngFor="let category of categories" [value]="category._id">
+                      {{ category.name }}
+                    </option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label>Description</label>
+                  <textarea class="form-control" name="description" rows="5" [(ngModel)]="product.description"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Upload Image URL</label>
+                    <input type="text" class="form-control" name="imageUrl" rows="5" [(ngModel)]="product.imageUrl">
+                  </div>
+                <button type="button" class="btn btn-success" (click)="updateProduct()" [disabled]="btnDisabled">Post</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+       -->
+
+       <div class="container pb-3">
+          <div class="table-wrapper">
+            <div class="table-title">
+              <div class="row">
+                <div class="col-sm-6">
+                  <h2 class="text-white">Edit <b>Product</b></h2>
+                </div>
+                <div class="col-sm-6">
+                  <a routerLink="/profile/myproducts" class="btn btn-success" ><i class="fa fa-arrow-left"></i> <span>Back To Products</span></a>
+                  </div>
+              </div>
+            </div>
+          </div>
+          <app-message></app-message>
+          <div class="row">
+              <div class="form-group col-sm-4">
+                <label class="form-control-label">Title</label>
+                <input type="text" name="title" class="form-control" [(ngModel)]="product.title">
+              </div>
+              <div class="form-group col-sm-4">
+                <label class="form-control-label">Price</label>
+                <input type="number" name="price" class="form-control" [(ngModel)]="product.price">
+              </div>
+              <div class="form-group col-sm-4">
+                <label>Category</label>
+                <select name="categoryId" [(ngModel)]="product.categoryId" class="custom-select">
+                  <option *ngFor="let category of categories" [value]="category._id">
+                    {{ category.name }}
+                  </option>
+                </select>
+              </div>
+              <div class="form-group col-sm-4">
+                  <label>Brand</label>
+                  <select name="brandId" [(ngModel)]="product.brandId" class="custom-select">
+                    <option *ngFor="let brand of brands" [value]="brand._id">
+                      {{ brand.name }}
+                    </option>
+                  </select>
+                </div>
+                <div class="form-group col-sm-4">
+                    <label>Stock Available</label>
+                    <select [(ngModel)]="selectedOption" class="custom-select">
+                    <option *ngFor="let o of options">
+                        {{ o.name }}
+                    </option>
+                    </select>
+                </div>
+              <div class="form-group col-sm-4">
+                <label>Description</label>
+                <textarea class="form-control" name="description" rows="2" [(ngModel)]="product.description"></textarea>
+              </div>
+              <div class="form-group col-sm-4">
+                <label>Upload Image URL</label>
+                <input type="text" class="form-control" name="description" [(ngModel)]="product.imageUrl">
+              </div>
+              </div>
+              <button class="btn btn-success mt-2" (click)="updateProduct()" [disabled]="btnDisabled">Update Product</button>
+                
+        </div>
+

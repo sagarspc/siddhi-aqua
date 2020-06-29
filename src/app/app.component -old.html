@@ -1,0 +1,672 @@
+<!-- 
+<div class="container">
+<nav class="navbar navbar-expand navbar-dark bg-dark fixed-top custom-menu" *ngIf="!showAdminBoard && !showModeratorBoard">
+  <div class="container-fluid">
+    <a routerLink="/" class="navbar-brand">
+      <img src="../assets/img/logo-5.jpg" width="500" alt="logo" id="logo"> Siddhi Aquarium
+    </a>
+    <button class="navbar-toggler" (click)="isCollapsed = !isCollapsed">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div [ngbCollapse]="isCollapsed" style="align-items: left; margin-left: 50px;" class="collapse navbar-collapse flex-column"
+      id="navbarNav">
+      <div class="w-100">
+        <ul class="navbar-nav pull-right">
+          <li class="nav-item active">
+              <a class="nav-link" routerLink="/">Home</a>
+          </li>
+          <li class="nav-item mr-3">
+            <a class="nav-link" routerLink="/home">Product</a>
+        </li>
+          <li class="nav-item mr-3">
+              <a class="nav-link" routerLink="/cart">Cart</a>
+          </li>
+          <li class="nav-item mr-3" >
+              <a class="nav-link" href="javascript:void(0)">Contact</a>
+          </li>
+          <li class="nav-item ml-0 ml-md-auto" ngbDropdown #dropdown="ngbDropdown">
+            <a href="javascript:void(0)" class="nav-link dropdown-toggle" ngbDropdownToggle>
+              <i class="fa fa-user mr-1"></i>
+              <span *ngIf="!isLoggedIn">Accounts</span>
+              <span *ngIf="isLoggedIn">{{ username }}
+              </span>
+              
+            </a>
+            <div ngbDropdownMenu class="dropdown-menu">
+              <a href="javascript:void(0)" *ngIf="isLoggedIn" routerLink="/profile" class="dropdown-item">
+                <i class="fa fa-user-circle" aria-hidden="true"></i> Profile
+              </a>
+              <a *ngIf="!isLoggedIn" (click)="closeDropdown(dropdown);collapse();" routerLink="/login" class="dropdown-item">
+                <i class="fa fa-key" aria-hidden="true"></i> Login
+              </a>
+              <a *ngIf="isLoggedIn" (click)="logout()" class="dropdown-item">
+                <i class="fa fa-key" aria-hidden="true"></i> Logout
+              </a>
+              <a *ngIf="!isLoggedIn" routerLink="/register" class="dropdown-item">
+                <i class="fa fa-group" aria-hidden="true"></i> Register
+              </a>
+            </div>
+          </li>
+          <li class="nav-item ml-0 ml-md-2">
+            <a routerLink="/cart" routerLinkActive="active" class="nav-link">
+              <i class="fa fa-shopping-cart mr-1 "></i><span *ngIf="cartItems.length > 0">{{cartItems.length}}</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<nav class="navbar navbar-expand navbar-dark bg-dark fixed-top custom-menu" *ngIf="showAdminBoard">
+  <div class="container-fluid">
+    <a routerLink="/" class="navbar-brand">
+      <img src="../assets/img/logo-5.jpg" width="500" alt="logo" id="logo"> Siddhi Aquarium
+    </a>
+    <button class="navbar-toggler" (click)="isCollapsed = !isCollapsed">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div [ngbCollapse]="isCollapsed" style="align-items: left; margin-left: 50px;" class="collapse navbar-collapse flex-column"
+      id="navbarNav">
+      <div class="w-100">
+        <ul class="navbar-nav pull-right">
+            <li class="nav-item mr-3">
+                <a class="nav-link" routerLink="/user" routerLinkActive="active">Users</a>
+            </li>
+
+          <li class="nav-item mr-3">
+              <a class="nav-link" routerLink="/admin/orders" routerLinkActive="active">Orders</a>
+          </li>
+          <li class="nav-item mr-3">
+              <a class="nav-link" routerLink="/profile/myproducts" routerLinkActive="active">Products</a>
+          </li>
+          <li class="nav-item mr-3">
+            <a routerLink="/categories" routerLinkActive="active" class="nav-link">Categories</a>
+          </li>
+          <li class="nav-item ml-0 ml-md-auto" ngbDropdown #dropdown="ngbDropdown">
+            <a href="javascript:void(0)" class="nav-link dropdown-toggle" ngbDropdownToggle>
+              <i class="fa fa-user mr-1"></i>
+              <span *ngIf="!isLoggedIn">Accounts</span>
+              <span *ngIf="isLoggedIn">Welcome Admin {{ username }}
+              </span>
+              
+            </a>
+            <div ngbDropdownMenu class="dropdown-menu">
+              <a *ngIf="isLoggedIn" (click)="closeDropdown(dropdown);collapse();" routerLink="/profile" class="dropdown-item">
+                <i class="fa fa-user-circle" aria-hidden="true"></i> Profile
+              </a>
+              <a *ngIf="!isLoggedIn" (click)="closeDropdown(dropdown);collapse();" routerLink="/login" class="dropdown-item">
+                <i class="fa fa-key" aria-hidden="true"></i> Login
+              </a>
+              <a (click)="logout()" class="dropdown-item">
+                <i class="fa fa-key" aria-hidden="true"></i> Logout
+              </a>
+              <a *ngIf="!isLoggedIn" (click)="closeDropdown(dropdown);collapse();" routerLink="/register" class="dropdown-item">
+                <i class="fa fa-group" aria-hidden="true"></i> Register
+              </a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
+</div>
+<main>
+    <router-outlet></router-outlet>
+</main>
+
+<footer class="footer-distributed">
+
+  <div class="footer-left text-center">
+
+    <div>
+      <img src="../assets/img/logo-5.jpg" width="500" alt="logo" class="footer-logo">
+    </div>
+
+
+    <p class="footer-company-name pt-4 text-white">Copyright © 2020 Reserved</p>
+  </div>
+
+  <div class="footer-center">
+
+    <div>
+      <i class="fa fa-map-marker"></i>
+      <p><span>Math, 50 Vengurla Belgoan Road </span> Tal-Vengurla , Dist- Sindhudurg</p>
+    </div>
+
+    <div>
+      <i class="fa fa-phone"></i>
+      <p><a href="tel:+7588972088">Call me at +91 7588972088</a></p>
+    </div>
+
+    <div>
+      <i class="fa fa-envelope"></i>
+      <p><a href="mailto:support@company.com">SiddhiAquarium@gmail.com</a></p>
+    </div>
+
+  </div>
+
+  <div class="footer-right">
+
+    <p class="footer-company-about">
+      <span>About the company</span>
+      Lorem ipsum dolor sit amet, consectateur adispicing elit. Fusce euismod convallis velit, eu auctor lacus vehicula sit amet.
+    </p>
+
+    <div class="footer-icons">
+
+      <a href="#"><i class="fa fa-facebook"></i></a>
+      <a href="#"><i class="fa fa-twitter"></i></a>
+      <a href="#"><i class="fa fa-linkedin"></i></a>
+      <a href="#"><i class="fa fa-github"></i></a>
+
+    </div>
+
+  </div>
+
+</footer> -->
+ <!-- header section strats -->
+ <header class="header_section">
+    <div class="container">
+      <nav class="navbar navbar-expand-lg custom_nav-container">
+        <a class="navbar-brand" href="index.html">
+          <img src="../assets/img/logo-5.jpg" alt="" />
+          <span>
+            Siddhi Aquarium
+          </span>
+        </a>
+        <div class="contact_nav" id="">
+          <ul class="navbar-nav ">
+            <li class="nav-item">
+              <a class="nav-link" href="service.html">
+                <img src="../assets/img/location.png" alt="" />
+                <span>Location</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="service.html">
+                <img src="../assets/img/call.png" alt="" />
+                <span>Call : + 91 7588972088</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="service.html">
+                <img src="../assets/img/envelope.png" alt="" />
+                <span>SiddhiAquarium@gmail.com</span>
+              </a>
+            </li>
+            <li class="nav-item ml-0 ml-md-auto" ngbDropdown #dropdown="ngbDropdown">
+                <a href="javascript:void(0)" class="nav-link dropdown-toggle" ngbDropdownToggle>
+                  <i class="fa fa-user mr-1"></i>
+                  <span *ngIf="!isLoggedIn">Accounts</span>
+                  <span *ngIf="isLoggedIn">{{ User.username }}
+                  </span>
+                  
+                </a>
+                <div ngbDropdownMenu class="dropdown-menu">
+                  <a *ngIf="isLoggedIn" routerLink="/profile" class="dropdown-item">
+                    <i class="fa fa-user-circle" aria-hidden="true"></i> Profile
+                  </a>
+                  <a *ngIf="!isLoggedIn" data-toggle="modal" data-target="#exampleModal" class="dropdown-item">
+                    <i class="fa fa-key" aria-hidden="true"></i> Login
+                  </a>
+                  <a *ngIf="isLoggedIn" (click)="logout()" class="dropdown-item">
+                    <i class="fa fa-key" aria-hidden="true"></i> Logout
+                  </a>
+                  <a *ngIf="!isLoggedIn" data-toggle="modal" data-target="#registerModal" routerLink="/register" class="dropdown-item">
+                    <i class="fa fa-group" aria-hidden="true"></i> Register
+                  </a>
+                </div>
+              </li>
+              <li class="nav-item cart">
+                <a routerLink="/cart" routerLinkActive="active" class="nav-link">
+                  <i class="fa fa-shopping-cart mr-1 "></i><span *ngIf="cartItems.length > 0">{{cartItems.length}}</span>
+                </a>
+              </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+
+  </header>
+  <!-- end header section -->
+
+  <section class=" slider_section position-relative" [ngClass]="{'removeBckg': (isLoggedIn || router.url !== '/home')}" >
+      <div class="container">
+        <div class="custom_nav2">
+          <nav class="navbar navbar-expand-lg custom_nav-container" >
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <div class="d-flex  flex-column flex-lg-row align-items-center">
+                <ul class="navbar-nav" *ngIf="!isLoggedIn">
+                  <li class="nav-item homeClass">
+                    <a class="nav-link" href="#" routerLinkActive="active">Home <span class="sr-only">(current)</span></a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" routerLink="/about" routerLinkActive="active">About </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" routerLinkActive="active" routerLink="/services">Services </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" routerLinkActive="active" routerLink="/contacts">Contact Us</a>
+                  </li>
+                  <li class="nav-item mr-3">
+                      <a class="nav-link" routerLink="/cart" routerLinkActive="active">Cart</a>
+                  </li>
+                  <li class="nav-item mr-3 nav-logout d-none">
+                      <a class="nav-link" data-toggle="modal" data-target="#exampleModal"> Login
+                    </a>
+                  </li>
+                  <li class="nav-item mr-3 nav-reg d-none">
+                  <a class="nav-link" data-toggle="modal" data-target="#registerModal">Register
+                  </a>  
+                </li>
+                  <!-- <li class="nav-item">
+                    <a class="nav-link" href="#">Login</a>
+                  </li> -->
+                </ul>
+
+                <ul class="navbar-nav" *ngIf="isLoggedIn && !showAdminBoard && !showModeratorBoard">
+                    <li class="nav-item homeClass">
+                        <a class="nav-link" href="/home" routerLinkActive="active">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="/about" routerLinkActive="active">About </a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" routerLinkActive="active" routerLink="/services">Services </a>
+                      </li>
+                    <li class="nav-item mr-3">
+                        <a class="nav-link" routerLink="/cart" routerLinkActive="active">Cart</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" routerLink="/contacts" routerLinkActive="active">Contact Us</a>
+                    </li>
+                    <li class="nav-item mr-3 nav-login d-none">
+                        <a class="nav-link" (click)="logout()">Logout
+                        </a>
+                      </li>
+                  </ul>
+                  <ul class="navbar-nav" *ngIf="isLoggedIn && showAdminBoard">
+                      <li class="nav-item mr-3">
+                          <a class="nav-link" routerLink="/profile/myproducts" routerLinkActive="active">Products</a>
+                      </li>
+                       
+                    <li class="nav-item mr-3">
+                          <a class="nav-link" routerLink="/user" routerLinkActive="active">Users</a>
+                      </li>
+          
+                    <li class="nav-item mr-3">
+                        <a class="nav-link" routerLink="/admin/orders" routerLinkActive="active">Orders</a>
+                    </li>
+                   
+                    <li class="nav-item mr-3">
+                      <a routerLink="/categories" routerLinkActive="active" class="nav-link">Categories</a>
+                    </li>
+                    
+                  </ul>
+                <form class="form-inline my-2 my-lg-0 ml-0 ml-lg-4 mb-3 mb-lg-0">
+                  <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit"></button>
+                </form>
+              </div>
+            </div>
+          </nav>
+        </div>
+      </div>
+      <div class="slider_container" [ngClass]="{'hidden-slider': (isLoggedIn || router.url !== '/home')}">
+          <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+              <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+              <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+              <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <div class="container">
+                  <div class="row">
+                    <div class="col-lg-6 col-md-7 offset-md-6 offset-md-5">
+                      <div class="detail-box mt-5">
+                        <h2>
+                          Get Your Fish
+                        </h2>
+                        <h1>
+                          Explore Here
+                        </h1>
+                        <!-- <p>
+                          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                          labore et dolore magna aliqua. Ut enim ad minim veniam
+                        </p> -->
+                        <div class="btn-box">
+                          <a href="" class="btn-1">
+                            Buy Here
+                          </a>
+                          <a href="" class="btn-2">
+                            Get A Quote
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-item ">
+                <div class="container">
+                  <div class="row">
+                    <div class="col-lg-6 col-md-7 offset-md-6 offset-md-5">
+                        <div class="detail-box mt-5">
+                            <h2>
+                              Get Your Fish
+                            </h2>
+                            <h1>
+                              Explore Here
+                            </h1>
+                            <!-- <p>
+                              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                              labore et dolore magna aliqua. Ut enim ad minim veniam
+                            </p> -->
+                            <div class="btn-box">
+                              <a href="" class="btn-1">
+                                Buy Here
+                              </a>
+                              <a href="" class="btn-2">
+                                Get A Quote
+                              </a>
+                            </div>
+                          </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-item ">
+                <div class="container">
+                  <div class="row">
+                    <div class="col-lg-6 col-md-7 offset-md-6 offset-md-5">
+                        <div class="detail-box mt-5">
+                            <h2>
+                              Get Your Fish
+                            </h2>
+                            <h1>
+                              Explore Here
+                            </h1>
+                            <!-- <p>
+                              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                              labore et dolore magna aliqua. Ut enim ad minim veniam
+                            </p> -->
+                            <div class="btn-box">
+                              <a href="" class="btn-1">
+                                Buy Here
+                              </a>
+                              <a href="" class="btn-2">
+                                Get A Quote
+                              </a>
+                            </div>
+                          </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      <!-- end slider section -->
+    </section>
+    <main>
+        <router-outlet></router-outlet>
+    </main>
+  <!-- info section -->
+
+  <section class="info_section layout_padding2-top">
+      
+      <div class="container">
+        <div class="row">
+          <div class="col-md-3">
+            <h6>
+              About Siddhi Aquarium
+            </h6>
+            <p>
+              consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+              minim veniam, quis nostrud exercitation u
+            </p>
+          </div>
+          <div class="col-md-2 offset-md-1">
+            <h6>
+              Menus
+            </h6>
+            <ul>
+              <li class=" active">
+                <a class="" href="index.html">Home <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="">
+                <a class="" href="about.html">About </a>
+              </li>
+              <li class="">
+                <a class="" href="service.html">Services </a>
+              </li>
+              <li class="">
+                <a class="" href="#contactSection">Contact Us</a>
+              </li>
+              <li class="">
+                <a class="" href="#">Login</a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-md-3">
+            <h6>
+              Useful Links
+            </h6>
+            <ul>
+              <li>
+                <a href="">
+                  Adipiscing
+                </a>
+              </li>
+              <li>
+                <a href="">
+                  Elit, sed
+                </a>
+              </li>
+              <li>
+                <a href="">
+                  do Eiusmod
+                </a>
+              </li>
+              <li>
+                <a href="">
+                  Tempor
+                </a>
+              </li>
+              <li>
+                <a href="">
+                  incididunt
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-md-3">
+            <h6>
+              Contact Us
+            </h6>
+            <div class="info_link-box">
+              <a href="">
+                <img src="../assets/img/location-white.png" alt="">
+                <span>50, Vengurla Belgoan Road Math 416516, Maharashtra</span>
+              </a>
+              <a href="tel:+7588972088">
+                <img src="../assets/img/call-white.png" alt="">
+                <span>+91 7588972088</span>
+              </a>
+              <a href="">
+                <img src="../assets/img/mail-white.png" alt="">
+                <span> SiddhiAquarium@gmail.com</span>
+              </a>
+            </div>
+            <div class="info_social">
+              <div>
+                <a href="">
+                  <img src="../assets/img/facebook-logo-button.png" alt="">
+                </a>
+              </div>
+              <div>
+                <a href="">
+                  <img src="../assets/img/twitter-logo-button.png" alt="">
+                </a>
+              </div>
+              <div>
+                <a href="">
+                  <img src="../assets/img/linkedin.png" alt="">
+                </a>
+              </div>
+              <div>
+                <a href="">
+                  <img src="../assets/img/instagram.png" alt="">
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  
+    <!-- end info section -->
+  
+  
+    <!-- footer section -->
+    <section class="container-fluid footer_section ">
+      <p>
+        &copy; 2020 All Rights Reserved. Design and Developed by
+        <a href="javascript:void(0)">Suraj</a>
+      </p>
+    </section>
+    <!-- footer section -->
+  
+
+  <!-- login and register modal start here-->
+
+
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title text-center m-auto" id="exampleModalLabel">Login</h5>
+          <button type="button" class="close m-0 p-0" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <form
+              name="form"
+              (ngSubmit)="f.form.valid && onSubmit()"
+              #f="ngForm"
+              novalidate
+            >
+              <div class="form-group">
+                <label for="username">Username</label>
+                <input
+                
+                  type="text"
+                  class="form-control"
+                  name="username"
+                  [(ngModel)]="form.username"
+                  required
+                  #username="ngModel"
+                />
+                <div
+                  class="alert alert-danger"
+                  role="alert"
+                  *ngIf="f.submitted && username.invalid"
+                >
+                  Username is required!
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="password">Password</label>
+                <input
+                  type="password"
+                  class="form-control"
+                  name="password"
+                  [(ngModel)]="form.password"
+                  required
+                  minlength="6"
+                  #password="ngModel"
+                />
+                <div
+                  class="alert alert-danger"
+                  role="alert"
+                  *ngIf="f.submitted && password.invalid"
+                >
+                  <div *ngIf="password.errors.required">Password is required</div>
+                  <div *ngIf="password.errors.minlength">
+                    Password must be at least 6 characters
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <button class="btn btn-primary btn-block">
+                  Login
+                </button>
+              </div>
+              <div class="form-group">
+                <div
+                  class="alert alert-danger"
+                  role="alert"
+                  *ngIf="f.submitted && isLoginFailed"
+                >
+                  Login failed: {{ errorMessage }}
+                </div>
+              </div>
+            </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title text-center m-auto" id="registerModalLabel">Register</h5>
+            <button type="button" class="close m-0 p-0" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+              <app-message></app-message>
+              <form>
+                  <div class="form-group">
+                    <label class="form-control-label">Name</label>
+                    <input type="text" name="name" class="form-control" [(ngModel)]="regusername">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-control-label">Email</label>
+                    <input type="text" name="email" class="form-control" [(ngModel)]="email">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-control-label">Password</label>
+                    <input type="password" name="password" class="form-control" [(ngModel)]="regpassword">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-control-label">Confirm Password</label>
+                    <input type="password" name="password1" class="form-control" [(ngModel)]="password1">
+                  </div>
+                  <div class="form-check sr-only">
+                    <label class="form-check-label">
+                      <input type="checkbox" name="isSeller" class="form-check-input" [(ngModel)]="isSeller"> Register as Seller
+                    </label>
+                  </div>
+                  <hr>
+                  <button type="button" class="btn btn-primary btn-block" (click)="register()" [disabled]="btnDisabled">Register</button>
+                </form>
+          </div>
+        </div>
+      </div>
+    </div>
+   <!-- login and register modal end here-->
+   <ngx-spinner bdColor="rgb(255, 255, 255)"><img src='../assets/img/loader.gif' /></ngx-spinner>

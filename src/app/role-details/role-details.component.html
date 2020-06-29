@@ -1,0 +1,22 @@
+<div class="container pb-3">
+        <div class="table-wrapper">
+        <div class="table-title">
+            <div class="row">
+            <div class="col-sm-6">
+                <h2 class="text-white">Update <b>Role</b></h2>
+            </div>
+            <div class="col-sm-6">
+                <a routerLink="/roles" class="btn btn-success" ><i class="fa fa-arrow-left"></i> <span>Back To Roles</span></a>
+                </div>
+            </div>
+        </div>
+        </div>
+        <app-message></app-message>
+        <div class="row">
+            <div class="form-group col-sm-4">
+                <label>Role Name</label>
+                <input type="text" class="form-control" [(ngModel)]="newRole.name"/>
+            </div>
+        </div>
+        <button type="button" class="btn btn-info" (click)="updateRole()" [disabled]="btnDisabled">Update Role</button>
+    </div>

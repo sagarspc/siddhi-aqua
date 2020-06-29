@@ -1,0 +1,177 @@
+
+<div class="container-fluid">
+  <div class="row mt-4">
+      <div class="col">
+          <nav aria-label="breadcrumb" *ngIf="user">
+              <ol class="breadcrumb">
+                  <li class="breadcrumb-item"><a class="shopping-cart" href="javascript:void(0)">Home</a></li>
+                  <li class="breadcrumb-item"><a href="javascript:void(0)">Products</a></li>
+              </ol>
+          </nav>
+      </div>
+  </div>
+</div>
+<div class="container-fluid mt-3">
+    <app-message></app-message>
+  <div class="row">
+      <div class="col-12 col-sm-2">
+          <div class="card bg-light mb-3">
+              <div class="card-header bg-primary text-white text-uppercase"><i class="fa fa-list"></i> Categories</div>
+              <ul class="list-group category_block">
+                  <li class="list-group-item" *ngFor="let category of categories">
+                    <a (click)="getProductsByCategory(category._id)">{{category.name}}</a>
+                  </li>
+              </ul>
+          </div>
+          <div class="top-selling-parent d-none">
+            <h3 class="top-seliing">Top Selling Product</h3>
+            <div *ngFor="let product of obj" class="sell-card mb-3">
+                <img class="img-fluid" src="{{product.imageUrl}}" alt="{{product.title}}" width="100%" height="80">
+                <div class="col text-center mt-1" *ngFor="let child of product.reviews">
+                    <ngb-rating [(rate)]="child.rating" [starTemplate]="t" [readonly]="true" max="5"></ngb-rating>  
+                </div>
+                <div class="col text-center">
+                    <a class="title" routerLink="/product/{{ product._id }}">{{ product.title }}</a>
+                </div>
+                <div class="col text-center mt-1">
+                    <div class="mb-1 price" style=""><i class="fa fa-inr"></i>{{ product.price}}</div>
+                </div>
+                <div class="col">
+                    <a (click)="addProductCart(product)" class="btn btn-success btn-block text-white add-to-cart"><i class="fa fa-shopping-cart mr-1"></i> Add to cart</a>
+                </div>
+            </div>
+          </div>
+      </div>
+      <div class="col-12 col-sm-7">
+        <div *ngIf="!obj?.length > 0" class="m-auto text-center">
+              <h1 class="text-center display-3 mt-5">
+                <i class="fa fa-spinner fa-spin"></i>
+              </h1>
+          </div>
+        <div class="text-center" *ngIf="!obj?.length > 0">
+            <div class="text-danger">Products Are Not Available</div>
+        </div>
+        <div class="row d-flex justify-content-left">
+          <div class="mb-3 col-sm-5">
+              <input class="form-control" type="text" name="search"
+              [(ngModel)]="searchText" placeholder="Search Product">
+          </div>
+          <div class="mb-3 col-sm-2">
+             <button class="btn btn-primary">Search</button>
+          </div>
+        </div>
+        <div class="row"> 
+              
+              <div *ngFor="let product of obj | filter:searchText | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize" class="col-12 col-md-6 col-lg-4 section-card pb-4">
+                <div class="card card-shadow custom-card">
+                      <img class="card-img-top" src="{{product.imageUrl}}" alt="{{product.title}}">
+                      <div class="card-body">
+                          
+                          <div class="">
+                              <div class="col text-center mb-1" *ngFor="let child of product.reviews">
+                                  <ngb-rating [(rate)]="child.rating" [starTemplate]="t" [readonly]="true" max="5"></ngb-rating>  
+                              </div>
+                              <div class="col text-center">
+                                  <a class="title" routerLink="/product/{{ product._id }}">{{ product.title }}</a>
+                              </div>
+                              <div class="col text-center mt-1">
+                                  <div class="mb-1 price" style=""><i class="fa fa-inr"></i>{{ product.price}}</div>
+                              </div>
+                             
+                              <div class="col">
+                                  <a (click)="addProductCart(product)" class="btn btn-success btn-block text-white add-to-cart"><i class="fa fa-shopping-cart mr-1"></i> Add to cart</a>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              
+              <div class="col-12 mt-5 paginate-section justify-content-center">
+                  <!-- <nav aria-label="...">
+                      <ul class="pagination">
+                          <li class="page-item disabled">
+                              <a class="page-link" href="#" tabindex="-1">Previous</a>
+                          </li>
+                          <li class="page-item"><a class="page-link" href="#">1</a></li>
+                          <li class="page-item active">
+                              <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+                          </li>
+                          <li class="page-item"><a class="page-link" href="#">3</a></li>
+                          <li class="page-item">
+                              <a class="page-link" href="#">Next</a>
+                          </li>
+                      </ul>
+                  </nav> -->
+                  <ngb-pagination
+                  [(page)]="page"
+                  [pageSize]="pageSize"
+                  [collectionSize]="obj?.length"></ngb-pagination>
+              </div>
+        </div>
+      </div>
+      <div class="col-12 col-sm-3 text-center section-fb"> 
+          <div class="fb-page" data-href="https://www.facebook.com/SiddhiAqua" data-tabs="timeline" data-width="300"  data-height="400" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/SiddhiAqua" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/SiddhiAqua">Facebook</a></blockquote></div>
+      </div>
+  </div>
+  <div></div>
+</div>
+
+<!-- 
+<section id="home">
+  <div class="container-fluid d-none d-md-block">
+    <ngb-carousel>
+      <ng-template ngbSlide>
+        <img src="assets/img/image1.jpg" alt="first" class="item">
+      </ng-template>
+      
+    </ngb-carousel>
+  </div>
+  <div class="container p-5">
+    <app-message></app-message>
+    <div class="row">
+      <div *ngIf="!products" class="m-auto">
+        <h1 class="text-center display-3 mt-5">
+          <i class="fa fa-spinner fa-spin"></i>
+        </h1>
+      </div>
+        
+      <div *ngFor="let product of products" class="col-12 col-sm-8 col-md-6 col-lg-4">
+        <div class="card">
+          <img class="card-img" src="{{ product.imageUrl }}" alt="Vans">
+          <div class="card-body">
+            <h4 class="card-title"><a routerLink="/product/{{ product._id }}">{{ product.title }}</a></h4>
+            <div class="buy d-flex justify-content-between align-items-center">
+              <div class="price text-success"><h5 class="mt-4"> <i class="fa fa-inr"></i>{{ product.price}}</h5></div>
+               <a href="#" class="btn btn-danger mt-3"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div *ngIf="!products" class="m-auto">
+        <h1 class="text-center display-3 mt-5">
+          <i class="fa fa-spinner fa-spin"></i>
+        </h1>
+      </div>
+      <div *ngFor="let product of products" class="col-md-3 mb-5">
+        <a routerLink="/product/{{ product._id }}">
+        <div class="card bg-light">
+          <img src="{{ product.image }}" alt="product" class="card-img-top">
+          <div class="card-body">
+            <h5 class="card-title">{{ product.title }}</h5>
+            <p class="card-text">{{ product.price | currency }}</p>
+          </div>
+        </div>
+      </a>
+      </div>
+    </div> 
+  </div>
+</section> -->
+<ng-template #t let-fill="fill">
+    <span *ngIf="fill === 100" class="star full">&#9733;</span>
+    <span *ngIf="fill === 0" class="star">&#9733;</span>
+    <span *ngIf="fill < 100 && fill > 0" class="star">
+      <span class="half" [style.width.%]="fill">&#9733;</span>&#9733;
+    </span>
+  </ng-template>
